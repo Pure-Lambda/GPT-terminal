@@ -13,13 +13,12 @@ function get_current_time {
     date '+%Y-%m-%d-%H-%M-%S'
 }
 
-if [[ "$INSIDE_SCRIPT" == "true" ]]; then
-    echo "Running inside 'script'"
-else
-    ( export INSIDE_SCRIPT=true && \
-      export FILE_SCRIPT_LOG="/tmp/script_log_$(get_current_time).log" && \ 
+if [[ -z "${SCRIPT}" ]]; then
+    ( FILE_SCRIPT_LOG="/tmp/script_log_$(get_current_time).log" && \ 
       echo "Starting script with file ${FILE_SCRIPT_LOG}" && \
-      script -feTB $FILE_SCRIPT_LOG )
+      script -t 5s -r $FILE_SCRIPT_LOG )
+else
+    echo "Running inside 'script' at ${SCRIPT}"
 fi
 ```
 
