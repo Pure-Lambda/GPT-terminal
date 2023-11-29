@@ -8,9 +8,9 @@ import sys
 if not os.environ.get("OPENAI_API_KEY"):
     raise Exception("OPENAI_API_KEY is not defined")
 
-# check that FILE_SCRIPT_LOG is defined:
-if not os.environ.get("FILE_SCRIPT_LOG"):
-    raise Exception("FILE_SCRIPT_LOG is not defined")
+# check that SCRIPT is defined:
+if not os.environ.get("SCRIPT"):
+    raise Exception("SCRIPT is not defined")
 
 def get_completion(log_history, prompt, model="gpt-3.5-turbo"):
     openai = OpenAI(
@@ -46,7 +46,7 @@ This is the log history:
 
 def get_log_history():
     # get the last 1000 non-blank lines from the file located at the path described by the env: FILE_SCRIPT_LOG
-    return os.popen("grep -v '^$' " + os.environ.get("FILE_SCRIPT_LOG") + " | tail -n 20").read()
+    return os.popen("grep -v '^$' " + os.environ.get("SCRIPT") + " | tail -n 20").read()
 
 
 # Main:
