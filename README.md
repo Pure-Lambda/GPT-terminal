@@ -19,7 +19,7 @@ else
     ( export INSIDE_SCRIPT=true && \
       export FILE_SCRIPT_LOG="/tmp/script_log_$(get_current_time).log" && \ 
       echo "Starting script with file ${FILE_SCRIPT_LOG}" && \
-      script $FILE_SCRIPT_LOG )
+      script -feTB $FILE_SCRIPT_LOG )
 fi
 ```
 
