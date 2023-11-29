@@ -45,7 +45,7 @@ This is the log history:
     return response.choices[0].message.content
 
 def get_log_history():
-    # get the last 1000 non-blank lines from the file located at the path described by the env: FILE_SCRIPT_LOG
+    # get the last 1000 non-blank lines from the file located at the path described by the env: SCRIPT
     return os.popen("grep -v '^$' " + os.environ.get("SCRIPT") + " | tail -n 20").read()
 
 
